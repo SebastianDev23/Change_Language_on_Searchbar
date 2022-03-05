@@ -1,21 +1,41 @@
-//
-//  ContentView.swift
-//  Searchbar_Change_Language
-//
-//  Created by Sebastian Klösel on 05.03.22.
-//
 
 import SwiftUI
 
+
 struct ContentView: View {
+    
+    
+    let library: Library
+    
+    @State private var searchText = ""
+    
+    
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List {
+                
+                ForEach(dataVar)  { data in
+                    
+                    Text(data.title)
+                    
+                    
+                }
+                
+            }
+            .searchable(text: $searchText)
+        }
+    }
+    var dataVar: [Library] {
+        if searchText.isEmpty {
+            return libraryData
+        } else {
+            return libraryData.filter {($0.title.lowercased().contains(searchText.lowercased()))}
+        }
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(library: libraryData[0])
     }
 }
