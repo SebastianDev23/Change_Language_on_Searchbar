@@ -16,8 +16,7 @@ struct ContentView: View {
             List {
                 
                 ForEach(dataVar)  { data in
-                    
-                    Text(data.title)
+                    Text(LocalizedStringKey(data.title))
                     
                     
                 }
