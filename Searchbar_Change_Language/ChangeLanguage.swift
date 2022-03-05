@@ -31,7 +31,7 @@ struct ChangeLanguage: View {
                 .padding()
             
             ForEach(libraryData) { data in
-                Text(data.title)
+                Text(LocalizedStringKey(data.title))
                 
             }
         }
